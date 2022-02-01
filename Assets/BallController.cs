@@ -12,13 +12,13 @@ public class BallController : MonoBehaviour
     private int score = 0;
     
     private GameObject gameoverText;//ゲームオーバを表示するテキスト
-    private GameObject scoreText;//得点を表示するテキスト
+    private GameObject scoreText;//通常課題2、得点を表示するテキスト
 
     // Use this for initialization
     void Start()
     {
         this.gameoverText = GameObject.Find("GameOverText");//シーン中のGameOverTextオブジェクトを取得
-        this.scoreText = GameObject.Find("ScoreText");//シーン中のScoreTextオブジェクトを取得
+        this.scoreText = GameObject.Find("ScoreText");//通常課題2、シーン中のScoreTextオブジェクトを取得
     }
 
     // Update is called once per frame
@@ -30,8 +30,10 @@ public class BallController : MonoBehaviour
             //GameoverTextにゲームオーバを表示
             this.gameoverText.GetComponent<Text>().text = "Game Over";
         }
+        this.scoreText.GetComponent<Text>().text = string.Format("{0}", score);//通常課題2、ScoreTextに得点を表示
 
     }
+    //通常課題3，4、ターゲットに衝突した時の得点の加算とターゲット毎の取得点数の設定
     void OnCollisionEnter(Collision collision)
     {
         //オブジェクトのtagを取得
@@ -57,8 +59,7 @@ public class BallController : MonoBehaviour
         {
             score += 40;
         }
-        //ScoreTextに得点を表示
-        this.scoreText.GetComponent<Text>().text = string.Format("{0}", score);
+        
     }
 
 }
